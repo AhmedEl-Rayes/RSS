@@ -1,30 +1,30 @@
 
-import { Shield, Users, Code, Clock } from "lucide-react";
+import { Shield, Users, Code, Target } from "lucide-react";
 
 export const FeatureSection = () => {
   const features = [
     {
-      name: "Advanced Technology",
+      name: "Advanced Detection",
       description:
-        "AI-powered detection identifies threats fast, keeping you ahead of risks.",
-      icon: Code,
+        "State-of-the-art vulnerability scanning and assessment tools to identify security gaps.",
+      icon: Target,
     },
     {
-      name: "Certified Experts",
+      name: "Expert Team",
       description:
-        "Our team of certified experts brings deep industry experience and precision.",
+        "Certified penetration testers with extensive experience in identifying complex vulnerabilities.",
       icon: Users,
     },
     {
-      name: "24/7 Monitoring",
+      name: "Custom Solutions",
       description:
-        "Around-the-clock surveillance ensures constant protection.",
-      icon: Clock,
+        "Tailored penetration testing approaches based on your infrastructure and needs.",
+      icon: Code,
     },
     {
-      name: "Compliance Focused",
+      name: "Enhanced Security",
       description:
-        "Meet regulatory requirements with our compliance-focused security solutions.",
+        "Comprehensive vulnerability reports with actionable remediation steps.",
       icon: Shield,
     },
   ];
@@ -35,10 +35,10 @@ export const FeatureSection = () => {
         <div className="lg:text-center mb-12">
           <h2 className="text-base text-cyber-cyan font-semibold tracking-wide uppercase">Services</h2>
           <p className="mt-2 text-3xl leading-8 font-bold tracking-tight text-white sm:text-4xl">
-            Comprehensive Security Solutions
+            Professional Penetration Testing
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-            Our services are designed to identify vulnerabilities, mitigate risks, and secure your digital assets.
+            Our specialized services focus on identifying vulnerabilities and providing detailed remediation guidance.
           </p>
         </div>
 

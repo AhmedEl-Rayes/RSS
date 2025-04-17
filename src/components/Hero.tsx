@@ -11,15 +11,15 @@ export const Hero = () => {
           <div className="sm:text-center md:mx-auto md:max-w-3xl lg:col-span-7 lg:text-left">
             <h1>
               <span className="block text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl lg:text-5xl xl:text-6xl">
-                PROTECTING YOUR
+                ADVANCED SECURITY
               </span>
               <span className="block text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl mt-2 text-cyber-cyan cyber-glow">
-                DIGITAL WORLD, 24/7
+                THROUGH PENETRATION TESTING
               </span>
             </h1>
             <p className="mt-6 text-base text-gray-300 sm:text-lg md:text-xl">
-              SentriSec provides round-the-clock cybersecurity solutions to keep your data and systems safe. 
-              Our penetration testing services identify vulnerabilities before attackers do.
+              SentriSec provides comprehensive penetration testing services to identify critical vulnerabilities before attackers do.
+              Our advanced detection capabilities ensure thorough security assessments.
             </p>
             <div className="mt-8 flex gap-4 sm:justify-center lg:justify-start">
               <Button className="bg-cyber-blue hover:bg-cyber-cyan text-white shadow-lg shadow-cyber-blue/20">
