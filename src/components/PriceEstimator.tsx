@@ -18,8 +18,8 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
   const [appSecTesting, setAppSecTesting] = useState(false);
   const [socialEngineering, setSocialEngineering] = useState(false);
   
-  const [internalHostCount, setInternalHostCount] = useState(50);
-  const [externalHostCount, setExternalHostCount] = useState(10);
+  const [internalHostCount, setInternalHostCount] = useState(500);
+  const [externalHostCount, setExternalHostCount] = useState(100);
   const [userCount, setUserCount] = useState(100);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -94,8 +94,8 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
               <Slider
                 value={[externalHostCount]}
                 min={1}
-                max={50}
-                step={1}
+                max={10000}
+                step={50}
                 className="w-full"
                 onValueChange={(val) => setExternalHostCount(val[0])}
               />
@@ -121,8 +121,8 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
               <Slider
                 value={[internalHostCount]}
                 min={10}
-                max={500}
-                step={10}
+                max={10000}
+                step={100}
                 className="w-full"
                 onValueChange={(val) => setInternalHostCount(val[0])}
               />
