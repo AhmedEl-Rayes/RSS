@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Calculator, DollarSign, LineChart, AlertTriangle, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,11 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { CompanySizeType, IndustryType, breachExamples } from "./BreachDataType";
 
-export const BreachCostCalculator = () => {
+interface BreachCostCalculatorProps {
+  onCostChange: (cost: number) => void;
+}
+
+export const BreachCostCalculator = ({ onCostChange }: BreachCostCalculatorProps) => {
   const [industry, setIndustry] = useState<IndustryType>("Technology");
   const [companySize, setCompanySize] = useState<CompanySizeType>("Medium");
   const [annualRevenue, setAnnualRevenue] = useState<number>(10000000);
@@ -57,10 +60,12 @@ export const BreachCostCalculator = () => {
         .slice(0, 3); // Take first 3
         
       setSimilarBreaches(similar);
+      
+      onCostChange(calculatedCost);
     };
     
     calculateBreachCost();
-  }, [industry, companySize, annualRevenue]);
+  }, [industry, companySize, annualRevenue, onCostChange]);
 
   const handleRevenueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value.replace(/,/g, ""));

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { DollarSign, Download, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,11 @@ import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 
-export const PriceEstimator = () => {
+interface PriceEstimatorProps {
+  onPriceChange: (price: number) => void;
+}
+
+export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
   const [internalAssessment, setInternalAssessment] = useState(false);
   const [externalAssessment, setExternalAssessment] = useState(true);
   const [appSecTesting, setAppSecTesting] = useState(false);
@@ -20,41 +23,35 @@ export const PriceEstimator = () => {
   const [userCount, setUserCount] = useState(100);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // Calculate price when inputs change
   useEffect(() => {
     let price = 0;
     
-    // Base prices
     if (externalAssessment) {
-      // External assessment base price + per host cost
       price += 5000 + (externalHostCount * 150);
     }
     
     if (internalAssessment) {
-      // Internal assessment base price + per host cost
       price += 7500 + (internalHostCount * 100);
     }
     
     if (appSecTesting) {
-      // Application security testing
       price += 12000;
     }
     
     if (socialEngineering) {
-      // Social engineering base + per user
       price += 4000 + (userCount * 25);
     }
     
-    // Apply discount if multiple services are selected
     let servicesCount = [externalAssessment, internalAssessment, appSecTesting, socialEngineering].filter(Boolean).length;
     
     if (servicesCount > 1) {
-      const discountRate = Math.min(0.05 * (servicesCount - 1), 0.15); // Max 15% discount
+      const discountRate = Math.min(0.05 * (servicesCount - 1), 0.15);
       price = price * (1 - discountRate);
     }
     
     setTotalPrice(Math.round(price));
-  }, [externalAssessment, internalAssessment, appSecTesting, socialEngineering, externalHostCount, internalHostCount, userCount]);
+    onPriceChange(Math.round(price));
+  }, [externalAssessment, internalAssessment, appSecTesting, socialEngineering, externalHostCount, internalHostCount, userCount, onPriceChange]);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -79,7 +76,6 @@ export const PriceEstimator = () => {
       
       <CardContent className="pt-6 pb-2">
         <div className="space-y-6">
-          {/* External Assessment */}
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label className="text-gray-200">External Assessment</Label>
@@ -107,7 +103,6 @@ export const PriceEstimator = () => {
             </div>
           )}
           
-          {/* Internal Assessment */}
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label className="text-gray-200">Internal Assessment</Label>
@@ -135,7 +130,6 @@ export const PriceEstimator = () => {
             </div>
           )}
           
-          {/* Application Security Testing */}
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label className="text-gray-200">Application Security Testing</Label>
@@ -148,7 +142,6 @@ export const PriceEstimator = () => {
             />
           </div>
           
-          {/* Social Engineering */}
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label className="text-gray-200">Social Engineering</Label>
@@ -189,7 +182,6 @@ export const PriceEstimator = () => {
               <DollarSign className="h-10 w-10 text-cyber-cyan opacity-70" />
             </div>
             
-            {/* Show discount message if applicable */}
             {([externalAssessment, internalAssessment, appSecTesting, socialEngineering].filter(Boolean).length > 1) && (
               <p className="text-xs text-cyber-cyan mt-2">
                 Multi-service discount applied!
