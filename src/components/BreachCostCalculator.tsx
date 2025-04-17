@@ -20,7 +20,6 @@ export const BreachCostCalculator = ({ onCostChange }: BreachCostCalculatorProps
   const [breachCost, setBreachCost] = useState<number>(0);
   const [similarBreaches, setSimilarBreaches] = useState<Array<any>>([]);
 
-  // Industry multipliers based on IBM Cost of Data Breach Report
   const industryMultipliers = {
     Healthcare: 1.5,
     Finance: 1.3,
@@ -32,32 +31,27 @@ export const BreachCostCalculator = ({ onCostChange }: BreachCostCalculatorProps
     Energy: 1.25
   };
 
-  // Company size multipliers
   const companyMultipliers = {
-    Small: 0.7, // Under 100 employees
-    Medium: 1.0, // 100-1000 employees
-    Large: 1.3, // 1000-10000 employees
-    Enterprise: 1.6 // 10000+ employees
+    Small: 0.7,
+    Medium: 1.0,
+    Large: 1.3,
+    Enterprise: 1.6
   };
 
-  // Calculate breach cost when inputs change
   useEffect(() => {
     const calculateBreachCost = () => {
-      // Base formula using industry averages and company size
-      const baseCost = Math.min(annualRevenue * 0.045, 50000000); // Cap at $50M for reasonable estimates
+      const baseCost = Math.min(annualRevenue * 0.045, 50000000);
       const industryMultiplier = industryMultipliers[industry] || 1.0;
       const sizeMultiplier = companyMultipliers[companySize] || 1.0;
       
-      // Calculate total cost with multipliers
       const calculatedCost = baseCost * industryMultiplier * sizeMultiplier;
       
       setBreachCost(calculatedCost);
       
-      // Find similar breaches
       const similar = breachExamples
         .filter(breach => breach.industry === industry || breach.size === companySize)
-        .sort(() => 0.5 - Math.random()) // Shuffle
-        .slice(0, 3); // Take first 3
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
         
       setSimilarBreaches(similar);
       
@@ -169,7 +163,7 @@ export const BreachCostCalculator = ({ onCostChange }: BreachCostCalculatorProps
         <div className="mt-6">
           <h3 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-yellow-500" />
-            Similar Breach Examples
+            Breaches that Match Your Company's Profile
           </h3>
           
           <div className="space-y-3">
