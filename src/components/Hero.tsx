@@ -1,8 +1,12 @@
-
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
+  const scrollToPricingTool = () => {
+    const toolsSection = document.getElementById('tools');
+    toolsSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="relative overflow-hidden pb-16 pt-10 sm:pb-24 bg-[#1a0a0a]">
       <div 
@@ -27,6 +31,14 @@ export const Hero = () => {
               Our elite team exposes critical vulnerabilities before they can be exploited.
             </p>
             <div className="mt-8 flex gap-4 sm:justify-center lg:justify-start">
+              <Button 
+                onClick={scrollToPricingTool}
+                variant="default" 
+                className="bg-[#ea384c] hover:bg-[#ea384c]/80 text-white"
+              >
+                <Calculator className="mr-2 h-4 w-4" />
+                Try Our Free Pricing Tool
+              </Button>
               <Button variant="outline" className="border-[#ea384c] text-[#ea384c] hover:bg-[#ea384c]/10">
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
