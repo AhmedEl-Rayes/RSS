@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Menu, X, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,30 +13,30 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div className="flex items-center gap-2">
+              <Link to="/" className="flex items-center gap-2">
                 <Shield className="h-8 w-8 text-cyber-cyan" />
                 <span className="font-bold text-xl text-white cyber-glow">SENTRISEC</span>
-              </div>
+              </Link>
             </div>
           </div>
           
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
-              <a href="#about" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              <Link to="/about" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 About
-              </a>
-              <a href="#services" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              </Link>
+              <Link to="/services" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 Services
-              </a>
-              <a href="#compliance" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              </Link>
+              <Link to="/compliance" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 Compliance
-              </a>
-              <a href="#tools" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              </Link>
+              <Link to="/tools" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 Tools
-              </a>
-              <a href="#contact" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              </Link>
+              <Link to="/contact" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                 Contact
-              </a>
+              </Link>
               <Button
                 variant="default"
                 size="sm"
@@ -65,41 +66,41 @@ export const Navbar = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-cyber-darker border-b border-cyber-blue/20">
-            <a
-              href="#about"
+            <Link
+              to="/about"
               className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsOpen(false)}
             >
               About
-            </a>
-            <a
-              href="#services"
+            </Link>
+            <Link
+              to="/services"
               className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsOpen(false)}
             >
               Services
-            </a>
-            <a
-              href="#compliance"
+            </Link>
+            <Link
+              to="/compliance"
               className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsOpen(false)}
             >
               Compliance
-            </a>
-            <a
-              href="#tools"
+            </Link>
+            <Link
+              to="/tools"
               className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsOpen(false)}
             >
               Tools
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              to="/contact"
               className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsOpen(false)}
             >
               Contact
-            </a>
+            </Link>
             <Button
               variant="default"
               size="sm"
