@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { DollarSign, Download, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,6 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
-import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 
 interface PriceEstimatorProps {
@@ -19,39 +19,70 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
   const [socialEngineering, setSocialEngineering] = useState(false);
   
   const [internalHostCount, setInternalHostCount] = useState(500);
-  const [externalHostCount, setExternalHostCount] = useState(100);
+  const [externalHostCount, setExternalHostCount] = useState(10);
   const [userCount, setUserCount] = useState(100);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {
-    let price = 0;
+  const calculatePrice = () => {
+    let basePrice = 0;
+    let variablePrice = 0;
     
+    // External Assessment
     if (externalAssessment) {
-      price += 5000 + (externalHostCount * 150);
+      basePrice += 5000; // Base setup and scanning infrastructure
+      
+      // Variable pricing based on host count
+      if (externalHostCount <= 25) {
+        variablePrice += externalHostCount * 200;
+      } else if (externalHostCount <= 100) {
+        variablePrice += 5000 + (externalHostCount - 25) * 150;
+      } else {
+        variablePrice += 16250 + (externalHostCount - 100) * 100;
+      }
     }
     
+    // Internal Assessment
     if (internalAssessment) {
-      price += 7500 + (internalHostCount * 100);
+      basePrice += 7500; // Base setup, onsite work, and infrastructure
+      
+      // Variable pricing based on host count
+      if (internalHostCount <= 500) {
+        variablePrice += internalHostCount * 15;
+      } else if (internalHostCount <= 2000) {
+        variablePrice += 7500 + (internalHostCount - 500) * 10;
+      } else {
+        variablePrice += 22500 + (internalHostCount - 2000) * 5;
+      }
     }
     
+    // Application Security Testing
     if (appSecTesting) {
-      price += 12000;
+      basePrice += 15000; // Base application assessment
     }
     
+    // Social Engineering
     if (socialEngineering) {
-      price += 4000 + (userCount * 25);
+      basePrice += 5000; // Base campaign setup
+      variablePrice += Math.min(userCount * 35, 15000); // Cap at 15k
     }
     
-    let servicesCount = [externalAssessment, internalAssessment, appSecTesting, socialEngineering].filter(Boolean).length;
+    let totalBeforeDiscount = basePrice + variablePrice;
     
+    // Volume discount based on total services selected
+    const servicesCount = [externalAssessment, internalAssessment, appSecTesting, socialEngineering].filter(Boolean).length;
     if (servicesCount > 1) {
       const discountRate = Math.min(0.05 * (servicesCount - 1), 0.15);
-      price = price * (1 - discountRate);
+      totalBeforeDiscount = totalBeforeDiscount * (1 - discountRate);
     }
     
-    setTotalPrice(Math.round(price));
-    onPriceChange(Math.round(price));
-  }, [externalAssessment, internalAssessment, appSecTesting, socialEngineering, externalHostCount, internalHostCount, userCount, onPriceChange]);
+    return Math.round(totalBeforeDiscount);
+  };
+
+  useEffect(() => {
+    const newPrice = calculatePrice();
+    setTotalPrice(newPrice);
+    onPriceChange(newPrice);
+  }, [externalAssessment, internalAssessment, appSecTesting, socialEngineering, externalHostCount, internalHostCount, userCount]);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -67,14 +98,14 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
       <CardHeader className="border-b border-cyber-blue/20 bg-gradient-to-r from-cyber-dark to-cyber-blue/5">
         <CardTitle className="flex items-center gap-2 text-white">
           <Shield className="h-5 w-5 text-cyber-cyan" />
-          Penetration Testing Price Estimator
+          Security Assessment Calculator
         </CardTitle>
         <CardDescription className="text-gray-300">
-          Customize your security assessment to fit your organization's needs.
+          Get an instant estimate for your security assessment needs
         </CardDescription>
       </CardHeader>
       
-      <CardContent className="pt-6 pb-2">
+      <CardContent className="pt-6 pb-2 space-y-8">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
@@ -89,24 +120,24 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
           </div>
           
           {externalAssessment && (
-            <div className="pl-2 border-l-2 border-cyber-blue/20 ml-2">
-              <Label className="text-sm text-gray-300 mb-2 block">External Host Count: {externalHostCount}</Label>
+            <div className="pl-4 border-l-2 border-cyber-blue/20 space-y-2">
+              <Label className="text-sm text-gray-300">External Hosts: {externalHostCount}</Label>
               <Slider
                 value={[externalHostCount]}
                 min={1}
-                max={10000}
-                step={50}
-                className="w-full"
+                max={500}
+                step={5}
                 onValueChange={(val) => setExternalHostCount(val[0])}
+                className="w-full"
               />
-              <p className="text-xs text-gray-400 mt-1">Base price + per host fee</p>
+              <p className="text-xs text-gray-400">Includes servers, network devices, and cloud resources</p>
             </div>
           )}
           
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label className="text-gray-200">Internal Assessment</Label>
-              <p className="text-xs text-gray-400">Identifies vulnerabilities within your internal network</p>
+              <p className="text-xs text-gray-400">Comprehensive evaluation of internal network security</p>
             </div>
             <Switch 
               checked={internalAssessment}
@@ -116,24 +147,24 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
           </div>
           
           {internalAssessment && (
-            <div className="pl-2 border-l-2 border-cyber-blue/20 ml-2">
-              <Label className="text-sm text-gray-300 mb-2 block">Internal Host Count: {internalHostCount}</Label>
+            <div className="pl-4 border-l-2 border-cyber-blue/20 space-y-2">
+              <Label className="text-sm text-gray-300">Internal Hosts: {internalHostCount}</Label>
               <Slider
                 value={[internalHostCount]}
-                min={10}
-                max={10000}
+                min={100}
+                max={5000}
                 step={100}
-                className="w-full"
                 onValueChange={(val) => setInternalHostCount(val[0])}
+                className="w-full"
               />
-              <p className="text-xs text-gray-400 mt-1">Base price + per host fee</p>
+              <p className="text-xs text-gray-400">Includes workstations, servers, and network devices</p>
             </div>
           )}
           
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
-              <Label className="text-gray-200">Application Security Testing</Label>
-              <p className="text-xs text-gray-400">Identifies vulnerabilities in your web and mobile applications</p>
+              <Label className="text-gray-200">Web Application Testing</Label>
+              <p className="text-xs text-gray-400">In-depth security assessment of your web applications</p>
             </div>
             <Switch 
               checked={appSecTesting}
@@ -145,7 +176,7 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label className="text-gray-200">Social Engineering</Label>
-              <p className="text-xs text-gray-400">Tests your employees' security awareness with simulated attacks</p>
+              <p className="text-xs text-gray-400">Phishing simulations and security awareness testing</p>
             </div>
             <Switch 
               checked={socialEngineering}
@@ -155,45 +186,43 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
           </div>
           
           {socialEngineering && (
-            <div className="pl-2 border-l-2 border-cyber-blue/20 ml-2">
-              <Label className="text-sm text-gray-300 mb-2 block">Employee Count: {userCount}</Label>
+            <div className="pl-4 border-l-2 border-cyber-blue/20 space-y-2">
+              <Label className="text-sm text-gray-300">Number of Employees: {userCount}</Label>
               <Slider
                 value={[userCount]}
-                min={10}
+                min={25}
                 max={1000}
-                step={10}
-                className="w-full"
+                step={25}
                 onValueChange={(val) => setUserCount(val[0])}
+                className="w-full"
               />
-              <p className="text-xs text-gray-400 mt-1">Base price + per employee fee</p>
+              <p className="text-xs text-gray-400">Target audience for phishing campaign</p>
             </div>
           )}
         </div>
         
-        <div className="mt-8">
-          <div className="rounded-md bg-cyber-blue/10 p-4 border border-cyber-blue/20">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="text-sm font-medium text-gray-300">Estimated Assessment Cost</p>
-                <h3 className="text-2xl font-bold text-cyber-cyan cyber-glow mt-1">
-                  {formatCurrency(totalPrice)}
-                </h3>
-              </div>
-              <DollarSign className="h-10 w-10 text-cyber-cyan opacity-70" />
+        <div className="rounded-md bg-cyber-blue/10 p-4 border border-cyber-blue/20">
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="text-sm font-medium text-gray-300">Estimated Investment</p>
+              <h3 className="text-2xl font-bold text-cyber-cyan mt-1">
+                {formatCurrency(totalPrice)}
+              </h3>
             </div>
-            
-            {([externalAssessment, internalAssessment, appSecTesting, socialEngineering].filter(Boolean).length > 1) && (
-              <p className="text-xs text-cyber-cyan mt-2">
-                Multi-service discount applied!
-              </p>
-            )}
+            <DollarSign className="h-10 w-10 text-cyber-cyan opacity-70" />
           </div>
+          
+          {([externalAssessment, internalAssessment, appSecTesting, socialEngineering].filter(Boolean).length > 1) && (
+            <p className="text-xs text-cyber-cyan mt-2">
+              Multi-service discount applied
+            </p>
+          )}
         </div>
       </CardContent>
       
       <CardFooter className="flex justify-end border-t border-cyber-blue/20 py-3 bg-cyber-darker/50">
         <Button 
-          onClick={() => toast.success("Quote has been generated and can be sent to your email.")}
+          onClick={() => toast.success("Quote has been generated. Our team will contact you with detailed pricing.")}
           variant="default"
           size="sm"
           className="bg-cyber-blue hover:bg-cyber-cyan text-white"
