@@ -65,13 +65,13 @@ export default {
 				},
 				// Add cybersecurity theme colors
 				cyber: {
-					dark: '#0c1116',
+					dark: '#1a0a0a',
 					darker: '#070c0f',
-					blue: '#1eaedb',
-					cyan: '#33c3f0',
-					accent: '#0ea5e9',
-					glow: '#4dc1ff',
-					'grid-start': '#0f172a',
+					blue: '#ea384c',
+					cyan: '#ea384c',
+					accent: '#ea384c',
+					glow: '#ea384c',
+					'grid-start': '#1a0a0a',
 					'grid-end': '#040d1c'
 				}
 			},

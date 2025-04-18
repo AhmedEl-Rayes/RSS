@@ -1,4 +1,3 @@
-
 import { Shield } from "lucide-react";
 
 export const Footer = () => {
@@ -10,8 +9,8 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2">
-              <Shield className="h-8 w-8 text-cyber-cyan" />
-              <span className="font-bold text-xl text-white cyber-glow">SENTRISEC</span>
+              <Shield className="h-8 w-8 text-[#ea384c]" />
+              <span className="font-bold text-xl text-white drop-shadow-[0_0_10px_rgba(234,56,76,0.5)]">RED SYNDICATE</span>
             </div>
             <p className="mt-4 text-sm">
               Professional penetration testing and cybersecurity services to protect your organization.
@@ -51,9 +50,9 @@ export const Footer = () => {
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-cyber-blue/20">
+        <div className="mt-12 pt-8 border-t border-[#ea384c]/20">
           <p className="text-center text-sm text-gray-400">
-            &copy; {currentYear} SentriSec Cybersecurity. All rights reserved.
+            &copy; {currentYear} Red Syndicate Security. All rights reserved.
           </p>
         </div>
       </div>

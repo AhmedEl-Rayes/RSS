@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Menu, X, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,14 +7,14 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-cyber-darker/90 backdrop-blur-sm border-b border-cyber-blue/20">
+    <nav className="sticky top-0 z-50 bg-cyber-darker/90 backdrop-blur-sm border-b border-[#ea384c]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center gap-2">
-                <Shield className="h-8 w-8 text-cyber-cyan" />
-                <span className="font-bold text-xl text-white cyber-glow">SENTRISEC</span>
+                <Shield className="h-8 w-8 text-[#ea384c]" />
+                <span className="font-bold text-xl text-white drop-shadow-[0_0_10px_rgba(234,56,76,0.5)]">RED SYNDICATE</span>
               </Link>
             </div>
           </div>
@@ -40,7 +39,7 @@ export const Navbar = () => {
               <Button
                 variant="default"
                 size="sm"
-                className="bg-cyber-blue hover:bg-cyber-cyan text-white ml-4"
+                className="bg-[#ea384c] hover:bg-[#ea384c]/80 text-white ml-4"
               >
                 Sign Up
               </Button>
@@ -104,7 +103,7 @@ export const Navbar = () => {
             <Button
               variant="default"
               size="sm"
-              className="bg-cyber-blue hover:bg-cyber-cyan text-white w-full mt-4"
+              className="bg-[#ea384c] hover:bg-[#ea384c]/80 text-white w-full mt-4"
             >
               Sign Up
             </Button>
