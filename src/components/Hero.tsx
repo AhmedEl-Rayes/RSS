@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -22,9 +21,6 @@ export const Hero = () => {
               Our advanced detection capabilities ensure thorough security assessments.
             </p>
             <div className="mt-8 flex gap-4 sm:justify-center lg:justify-start">
-              <Button className="bg-cyber-blue hover:bg-cyber-cyan text-white shadow-lg shadow-cyber-blue/20">
-                Get a Demo
-              </Button>
               <Button variant="outline" className="border-cyber-blue text-cyber-blue hover:bg-cyber-blue/10">
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
