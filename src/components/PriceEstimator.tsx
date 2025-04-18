@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { DollarSign, Download, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,6 +19,7 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
   
   const [internalHostCount, setInternalHostCount] = useState(500);
   const [externalHostCount, setExternalHostCount] = useState(10);
+  const [appCount, setAppCount] = useState(1);
   const [userCount, setUserCount] = useState(100);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -29,41 +29,42 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
     
     // External Assessment
     if (externalAssessment) {
-      basePrice += 5000; // Base setup and scanning infrastructure
+      basePrice += 3000; // Base setup and scanning infrastructure
       
       // Variable pricing based on host count
-      if (externalHostCount <= 25) {
-        variablePrice += externalHostCount * 200;
-      } else if (externalHostCount <= 100) {
-        variablePrice += 5000 + (externalHostCount - 25) * 150;
+      if (externalHostCount <= 10) {
+        variablePrice += externalHostCount * 300;
+      } else if (externalHostCount <= 50) {
+        variablePrice += 3000 + (externalHostCount - 10) * 200;
       } else {
-        variablePrice += 16250 + (externalHostCount - 100) * 100;
+        variablePrice += 11000 + (externalHostCount - 50) * 150;
       }
     }
     
     // Internal Assessment
     if (internalAssessment) {
-      basePrice += 7500; // Base setup, onsite work, and infrastructure
+      basePrice += 5000; // Base setup, onsite work, and infrastructure
       
-      // Variable pricing based on host count
+      // Variable pricing based on host count - adjusted for more realistic pricing
       if (internalHostCount <= 500) {
-        variablePrice += internalHostCount * 15;
+        variablePrice += internalHostCount * 5;
       } else if (internalHostCount <= 2000) {
-        variablePrice += 7500 + (internalHostCount - 500) * 10;
+        variablePrice += 2500 + (internalHostCount - 500) * 3;
       } else {
-        variablePrice += 22500 + (internalHostCount - 2000) * 5;
+        variablePrice += 7000 + (internalHostCount - 2000) * 2;
       }
     }
     
     // Application Security Testing
     if (appSecTesting) {
-      basePrice += 15000; // Base application assessment
+      basePrice += 8000; // Base application assessment setup
+      variablePrice += (appCount - 1) * 6000; // Additional apps at 6k each
     }
     
     // Social Engineering
     if (socialEngineering) {
-      basePrice += 5000; // Base campaign setup
-      variablePrice += Math.min(userCount * 35, 15000); // Cap at 15k
+      basePrice += 3000; // Base campaign setup
+      variablePrice += Math.min(userCount * 25, 12000); // Cap at 12k
     }
     
     let totalBeforeDiscount = basePrice + variablePrice;
@@ -82,7 +83,7 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
     const newPrice = calculatePrice();
     setTotalPrice(newPrice);
     onPriceChange(newPrice);
-  }, [externalAssessment, internalAssessment, appSecTesting, socialEngineering, externalHostCount, internalHostCount, userCount]);
+  }, [externalAssessment, internalAssessment, appSecTesting, socialEngineering, externalHostCount, internalHostCount, userCount, appCount]);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -164,7 +165,7 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label className="text-gray-200">Web Application Testing</Label>
-              <p className="text-xs text-gray-400">In-depth security assessment of your web applications</p>
+              <p className="text-xs text-gray-400">In-depth security assessment of your web applications and APIs</p>
             </div>
             <Switch 
               checked={appSecTesting}
@@ -172,6 +173,21 @@ export const PriceEstimator = ({ onPriceChange }: PriceEstimatorProps) => {
               className="data-[state=checked]:bg-cyber-blue"
             />
           </div>
+          
+          {appSecTesting && (
+            <div className="pl-4 border-l-2 border-cyber-blue/20 space-y-2">
+              <Label className="text-sm text-gray-300">Number of Applications: {appCount}</Label>
+              <Slider
+                value={[appCount]}
+                min={1}
+                max={10}
+                step={1}
+                onValueChange={(val) => setAppCount(val[0])}
+                className="w-full"
+              />
+              <p className="text-xs text-gray-400">Number of web applications or APIs to be tested</p>
+            </div>
+          )}
           
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
