@@ -15,7 +15,7 @@ export const Hero = () => {
         <div className="lg:grid lg:grid-cols-12 lg:gap-8">
           <div className="sm:text-center md:mx-auto md:max-w-3xl lg:col-span-7 lg:text-left">
             <h1>
-              <span className="block text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl lg:text-5xl xl:text-6xl">
+              <span className="block text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl lg:text-5xl xl:text-7xl">
                 RED SYNDICATE
               </span>
               <span className="block text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl mt-2 text-[#ea384c] drop-shadow-[0_0_10px_rgba(234,56,76,0.5)]">SECURITY SERVICES</span>
