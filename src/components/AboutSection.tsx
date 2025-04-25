@@ -52,8 +52,8 @@ export const AboutSection = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-white">Industry Recognition</h4>
-                  <p className="mt-2 text-gray-300">Red Syndicate has been recognized for excellence in cybersecurity services by leading industry organizations and publications.</p>
+                  <h4 className="text-lg font-medium text-white">Industry Recognized Certifications</h4>
+                  <p className="mt-2 text-gray-300">Red Syndicate consultants have earned has been recognized for excellence in cybersecurity services by leading industry organizations and publications.</p>
                 </div>
               </div>
             </div>
