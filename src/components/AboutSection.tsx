@@ -1,7 +1,9 @@
 
 import { Shield, CheckCircle, Award } from "lucide-react";
+
 export const AboutSection = () => {
-  return <div id="about" className="py-16 bg-gradient-to-b from-cyber-darker to-cyber-dark">
+  return (
+    <div id="about" className="py-16 bg-gradient-to-b from-cyber-darker to-cyber-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center mb-12">
           <h2 className="text-base text-cyber-cyan font-semibold tracking-wide uppercase">ABOUT RED SYNDICATE</h2>
@@ -58,6 +60,7 @@ export const AboutSection = () => {
                 </div>
               </div>
             </div>
+          </div>
           
           <div className="order-1 md:order-2">
             <div className="relative rounded-lg overflow-hidden shadow-xl">
@@ -79,6 +82,8 @@ export const AboutSection = () => {
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default AboutSection;
