@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { Mail, MessageSquare, Phone, Send } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+
 export const ContactSection = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -23,6 +25,7 @@ export const ContactSection = () => {
       setIsSubmitting(false);
     }, 1500);
   };
+
   return <div id="contact" className="py-16 bg-gradient-to-b from-cyber-darker to-cyber-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center mb-12">
@@ -58,18 +61,6 @@ export const ContactSection = () => {
                   <div>
                     <p className="text-sm font-medium text-gray-300">Phone</p>
                     <a href="tel:+18005551234" className="text-white hover:text-cyber-cyan">+1 (903)-776-4137</a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="rounded-full bg-cyber-blue/10 p-3">
-                    <MessageSquare className="h-6 w-6 text-cyber-cyan" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-gray-300">Live Chat</p>
-                    <p className="text-white">
-                      Available Monday-Friday, 9AM-5PM ET
-                    </p>
                   </div>
                 </div>
               </div>
@@ -117,4 +108,5 @@ export const ContactSection = () => {
       </div>
     </div>;
 };
+
 export default ContactSection;
