@@ -1,4 +1,3 @@
-
 import { Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -54,7 +53,7 @@ export const Footer = () => {
         
         <div className="mt-12 pt-8 border-t border-[#ea384c]/20">
           <p className="text-center text-sm text-gray-400">
-            &copy; {currentYear} Red Syndicate Security. All rights reserved.
+            &copy; {currentYear} Red Syndicate Security LLC. All rights reserved.
           </p>
         </div>
       </div>
@@ -63,4 +62,3 @@ export const Footer = () => {
 };
 
 export default Footer;
-
