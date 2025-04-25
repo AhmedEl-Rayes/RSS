@@ -1,4 +1,6 @@
+
 import { Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,32 +22,32 @@ export const Footer = () => {
           <div className="md:col-span-1">
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Solutions</h3>
             <ul className="mt-4 space-y-2">
-              <li><a href="#services" className="text-sm text-gray-300 hover:text-cyber-cyan">Penetration Testing</a></li>
-              <li><a href="#services" className="text-sm text-gray-300 hover:text-cyber-cyan">Security Audits</a></li>
-              <li><a href="#services" className="text-sm text-gray-300 hover:text-cyber-cyan">Application Security</a></li>
-              <li><a href="#services" className="text-sm text-gray-300 hover:text-cyber-cyan">Social Engineering</a></li>
-              <li><a href="#services" className="text-sm text-gray-300 hover:text-cyber-cyan">Security Training</a></li>
+              <li><Link to="/services#penetration-testing" className="text-sm text-gray-300 hover:text-cyber-cyan">Penetration Testing</Link></li>
+              <li><Link to="/services#security-audits" className="text-sm text-gray-300 hover:text-cyber-cyan">Security Audits</Link></li>
+              <li><Link to="/services#application-security" className="text-sm text-gray-300 hover:text-cyber-cyan">Application Security</Link></li>
+              <li><Link to="/services#social-engineering" className="text-sm text-gray-300 hover:text-cyber-cyan">Social Engineering</Link></li>
+              <li><Link to="/services#security-training" className="text-sm text-gray-300 hover:text-cyber-cyan">Security Training</Link></li>
             </ul>
           </div>
           
           <div className="md:col-span-1">
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Company</h3>
             <ul className="mt-4 space-y-2">
-              <li><a href="#about" className="text-sm text-gray-300 hover:text-cyber-cyan">About Us</a></li>
-              <li><a href="#" className="text-sm text-gray-300 hover:text-cyber-cyan">Team</a></li>
-              <li><a href="#" className="text-sm text-gray-300 hover:text-cyber-cyan">Careers</a></li>
-              <li><a href="#" className="text-sm text-gray-300 hover:text-cyber-cyan">Blog</a></li>
-              <li><a href="#contact" className="text-sm text-gray-300 hover:text-cyber-cyan">Contact</a></li>
+              <li><Link to="/about" className="text-sm text-gray-300 hover:text-cyber-cyan">About Us</Link></li>
+              <li><Link to="/team" className="text-sm text-gray-300 hover:text-cyber-cyan">Team</Link></li>
+              <li><Link to="/careers" className="text-sm text-gray-300 hover:text-cyber-cyan">Careers</Link></li>
+              <li><Link to="/blog" className="text-sm text-gray-300 hover:text-cyber-cyan">Blog</Link></li>
+              <li><Link to="/contact" className="text-sm text-gray-300 hover:text-cyber-cyan">Contact</Link></li>
             </ul>
           </div>
           
           <div className="md:col-span-1">
             <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Legal</h3>
             <ul className="mt-4 space-y-2">
-              <li><a href="#" className="text-sm text-gray-300 hover:text-cyber-cyan">Privacy Policy</a></li>
-              <li><a href="#" className="text-sm text-gray-300 hover:text-cyber-cyan">Terms of Service</a></li>
-              <li><a href="#" className="text-sm text-gray-300 hover:text-cyber-cyan">Cookie Policy</a></li>
-              <li><a href="#" className="text-sm text-gray-300 hover:text-cyber-cyan">Security</a></li>
+              <li><Link to="/privacy" className="text-sm text-gray-300 hover:text-cyber-cyan">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-sm text-gray-300 hover:text-cyber-cyan">Terms of Service</Link></li>
+              <li><Link to="/cookies" className="text-sm text-gray-300 hover:text-cyber-cyan">Cookie Policy</Link></li>
+              <li><Link to="/security" className="text-sm text-gray-300 hover:text-cyber-cyan">Security</Link></li>
             </ul>
           </div>
         </div>
@@ -61,3 +63,4 @@ export const Footer = () => {
 };
 
 export default Footer;
+
