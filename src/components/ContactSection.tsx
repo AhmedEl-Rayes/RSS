@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Mail, MessageSquare, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,17 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-
 export const ContactSection = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       toast.success("Your message has been sent successfully. We'll be in touch shortly!");
@@ -26,9 +23,7 @@ export const ContactSection = () => {
       setIsSubmitting(false);
     }, 1500);
   };
-
-  return (
-    <div id="contact" className="py-16 bg-gradient-to-b from-cyber-darker to-cyber-dark">
+  return <div id="contact" className="py-16 bg-gradient-to-b from-cyber-darker to-cyber-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center mb-12">
           <h2 className="text-base text-cyber-cyan font-semibold tracking-wide uppercase">Contact</h2>
@@ -52,9 +47,7 @@ export const ContactSection = () => {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-300">Email</p>
-                    <a href="mailto:contact@sentrisec.com" className="text-white hover:text-cyber-cyan">
-                      contact@sentrisec.com
-                    </a>
+                    <a href="mailto:contact@sentrisec.com" className="text-white hover:text-cyber-cyan">info@redsyndicatesecurity.com</a>
                   </div>
                 </div>
                 
@@ -64,9 +57,7 @@ export const ContactSection = () => {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-300">Phone</p>
-                    <a href="tel:+18005551234" className="text-white hover:text-cyber-cyan">
-                      +1 (800) 555-1234
-                    </a>
+                    <a href="tel:+18005551234" className="text-white hover:text-cyber-cyan">+1 (903)-776-4137</a>
                   </div>
                 </div>
                 
@@ -88,10 +79,7 @@ export const ContactSection = () => {
                 <p className="text-gray-300 mb-4">
                   Schedule a call with our security experts to discuss your specific needs and challenges.
                 </p>
-                <Button
-                  onClick={() => toast.info("Consultation scheduling will be available soon.")}
-                  className="w-full bg-cyber-blue hover:bg-cyber-cyan text-white"
-                >
+                <Button onClick={() => toast.info("Consultation scheduling will be available soon.")} className="w-full bg-cyber-blue hover:bg-cyber-cyan text-white">
                   Schedule Consultation
                 </Button>
               </div>
@@ -104,61 +92,29 @@ export const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-gray-200">Name</Label>
-                <Input
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your name"
-                  required
-                  className="bg-cyber-darker border-cyber-blue/30 text-gray-200"
-                />
+                <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="Your name" required className="bg-cyber-darker border-cyber-blue/30 text-gray-200" />
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-gray-200">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your.email@company.com"
-                  required
-                  className="bg-cyber-darker border-cyber-blue/30 text-gray-200"
-                />
+                <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your.email@company.com" required className="bg-cyber-darker border-cyber-blue/30 text-gray-200" />
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="message" className="text-gray-200">Message</Label>
-                <Textarea
-                  id="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Tell us about your security needs and concerns"
-                  required
-                  className="min-h-[120px] bg-cyber-darker border-cyber-blue/30 text-gray-200"
-                />
+                <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Tell us about your security needs and concerns" required className="min-h-[120px] bg-cyber-darker border-cyber-blue/30 text-gray-200" />
               </div>
               
-              <Button
-                type="submit"
-                className="w-full bg-cyber-blue hover:bg-cyber-cyan text-white"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
-                  <>
+              <Button type="submit" className="w-full bg-cyber-blue hover:bg-cyber-cyan text-white" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : <>
                     <Send className="mr-2 h-4 w-4" />
                     Send Message
-                  </>
-                )}
+                  </>}
               </Button>
             </form>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ContactSection;
