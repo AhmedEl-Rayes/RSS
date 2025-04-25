@@ -1,3 +1,4 @@
+
 import { Shield, CheckCircle, Award } from "lucide-react";
 export const AboutSection = () => {
   return <div id="about" className="py-16 bg-gradient-to-b from-cyber-darker to-cyber-dark">
@@ -53,11 +54,10 @@ export const AboutSection = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-medium text-white">Industry Recognized Certifications</h4>
-                  <p className="mt-2 text-gray-300">Red Syndicate consultants have earned has been recognized for excellence in cybersecurity services by leading industry organizations and publications.</p>
+                  <p className="mt-2 text-gray-300">Red Syndicate consultants have really good certifications that demonstrate our expertise in cutting-edge cybersecurity practices.</p>
                 </div>
               </div>
             </div>
-          </div>
           
           <div className="order-1 md:order-2">
             <div className="relative rounded-lg overflow-hidden shadow-xl">
